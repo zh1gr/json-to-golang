@@ -47,7 +47,7 @@ body {
     background: #009578;
     color: #ffffff;
     font-weight: bold;
-    font-family: "Roboto";
+    font-family: "Roboto", serif;
 }
 
 .controls__button:active {

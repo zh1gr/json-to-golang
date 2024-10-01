@@ -5,15 +5,22 @@ const btnFormat = document.querySelector(".controls__button--convert");
 btnFormat.addEventListener("click", () => {
     try {
         const jsonObj = JSON.parse(inputArea.value);
-        const goStruct = generateGoStruct(jsonObj, "Root");
-        outputArea.value = goStruct;
+        outputArea.value = generateGoStruct(jsonObj, "Root");
     } catch (err) {
         outputArea.value = err.message;
     }
 });
 
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string
+        .split(/[-_]/)
+        .map(part => {
+            if (part === part.toUpperCase()) {
+                return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+            }
+            return part.charAt(0).toUpperCase() + part.slice(1);
+        })
+        .join('');
 }
 
 function convertToGoType(value, fieldName) {
